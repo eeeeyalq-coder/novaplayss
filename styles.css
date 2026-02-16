@@ -487,6 +487,9 @@ nav a:hover {
     cursor: pointer;
     text-decoration: none;
     aspect-ratio: 16 / 9;
+}
+
+.jeu-thumb-link.animating {
     animation: cardFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
