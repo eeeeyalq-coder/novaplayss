@@ -170,8 +170,13 @@ function generateGameElements() {
         gameLink.rel = 'noopener';
         gameLink.setAttribute('data-title', game.title);
         gameLink.setAttribute('data-mode', game.mode);
-        // Staggered entrance animation
+        // Staggered entrance animation (only on initial load)
+        gameLink.classList.add('animating');
         gameLink.style.animationDelay = (0.4 + index * 0.08) + 's';
+        gameLink.addEventListener('animationend', function () {
+            gameLink.classList.remove('animating');
+            gameLink.style.animationDelay = '';
+        }, { once: true });
 
         // Créer l'image
         const img = document.createElement('img');
