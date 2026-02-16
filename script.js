@@ -152,6 +152,19 @@ const GAMES_DATABASE = [
         link: "https://www.clictune.com/mncv",
         mode: "solo"
     },
+    {
+        title: "Power Wash Simulator",
+        image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1290000/0184e192ea58230dd82aa8aed8134be3ed8fc4c2/capsule_616x353.jpg",
+        link: "https://www.clictune.com/mncw",
+        mode: "multiplayer"
+    },
+    {
+        title: "Road 96",
+        image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1466640/capsule_616x353.jpg",
+        link: "https://www.clictune.com/mncx",
+        mode: "solo"
+    },
+
 ];
 
 // Fonction pour générer les éléments de jeu
