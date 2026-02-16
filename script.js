@@ -169,6 +169,7 @@ function generateGameElements() {
         gameLink.target = '_blank';
         gameLink.rel = 'noopener';
         gameLink.setAttribute('data-title', game.title);
+        gameLink.setAttribute('data-mode', game.mode);
         // Staggered entrance animation
         gameLink.style.animationDelay = (0.4 + index * 0.08) + 's';
 
@@ -281,33 +282,43 @@ function generateModals() {
 // ============================================
 // CODE POUR jeu.html
 // ============================================
+let currentFilter = 'all';
+
+function applyFilters() {
+    const query = (document.getElementById('gameSearch')?.value || '').trim().toLowerCase();
+    const games = document.querySelectorAll('#gamesGrid .jeu-thumb-link');
+
+    games.forEach(game => {
+        const title = (game.getAttribute('data-title') || '').toLowerCase();
+        const mode = game.getAttribute('data-mode') || '';
+        const matchesSearch = title.includes(query);
+        const matchesFilter = currentFilter === 'all' || mode === currentFilter;
+
+        game.style.display = (matchesSearch && matchesFilter) ? '' : 'none';
+    });
+}
+
 function initGamePage() {
     // Générer les jeux et les modales
     generateGameElements();
     generateModals();
 
-    // Search script
+    // Search
     const gameSearch = document.getElementById('gameSearch');
     if (gameSearch) {
-        gameSearch.addEventListener('input', function () {
-            const query = this.value.trim().toLowerCase();
-            const games = document.querySelectorAll('#gamesGrid .jeu-thumb-link');
-            let visibleCount = 0;
-            games.forEach(game => {
-                const title = (game.getAttribute('data-title') || game.textContent || '').toLowerCase();
-                if (title.includes(query)) {
-                    game.style.display = '';
-                    visibleCount++;
-                } else {
-                    game.style.display = 'none';
-                }
-            });
-            const comingSoonMsg = document.getElementById('comingSoonMsg');
-            if (comingSoonMsg) {
-                comingSoonMsg.style.display = (visibleCount === 0) ? 'none' : '';
-            }
-        });
+        gameSearch.addEventListener('input', applyFilters);
     }
+
+    // Category filters
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.getAttribute('data-filter');
+            applyFilters();
+        });
+    });
 }
 
 // ============================================
