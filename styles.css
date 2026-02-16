@@ -382,8 +382,44 @@ nav a:hover {
 .search-bar-container {
     display: flex;
     justify-content: center;
-    margin: var(--spacing-lg) 0;
+    margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
     animation: fadeSlideDown 0.8s 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ============================================
+   CATEGORY FILTERS
+   ============================================ */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: var(--spacing-md);
+    animation: fadeSlideDown 0.8s 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.filter-btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-full);
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-btn.active {
+    color: var(--text-primary);
+    background: rgba(124, 58, 237, 0.2);
+    border-color: var(--accent-violet);
 }
 
 .search-bar {
